@@ -7,9 +7,9 @@ class MenuItem:
     def __init__(self, name: str, price: float, category: str, popularity_rating: float = 0.0):
         self.item_id: str = str(uuid.uuid4())
         self.name = name
-        self.price = price
         self.category = category
         self.popularity_rating = popularity_rating
+        self.update_price(price)
 
     def update_price(self, new_price: float) -> None:
         if new_price < 0:
