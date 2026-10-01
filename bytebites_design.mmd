@@ -1,0 +1,38 @@
+classDiagram
+    class Customer {
+        -customer_id: str
+        -name: str
+        -purchase_history: List~Transaction~
+        +add_purchase(transaction: Transaction)
+        +is_verified() bool
+    }
+
+    class MenuItem {
+        -item_id: str
+        -name: str
+        -price: float
+        -category: str
+        -popularity_rating: float
+        +update_price(new_price: float)
+        +increment_popularity()
+    }
+
+    class Menu {
+        -items: List~MenuItem~
+        +add_item(item: MenuItem)
+        +get_items_by_category(category: str) List~MenuItem~
+        +get_items_grouped_by_category() Dict~str, List~MenuItem~~
+    }
+
+    class Transaction {
+        -transaction_id: str
+        -customer_id: str
+        -timestamp: datetime
+        -items: List~MenuItem~
+        +add_item(item: MenuItem)
+        +calculate_total() float
+    }
+
+    Menu *-- "many" MenuItem : catalog
+    Transaction o-- "many" MenuItem : selected items
+    Customer *-- "many" Transaction : purchase history
