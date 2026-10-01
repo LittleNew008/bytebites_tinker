@@ -29,8 +29,12 @@ classDiagram
         -customer_id: str
         -timestamp: datetime
         -items: List~MenuItem~
+        -status: str
         +add_item(item: MenuItem)
         +calculate_total() float
+        +submit_order()
+        +complete_payment()
+        +transaction_status() str
     }
 
     Menu *-- "many" MenuItem : catalog
